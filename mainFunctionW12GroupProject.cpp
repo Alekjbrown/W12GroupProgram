@@ -5,22 +5,31 @@ using namespace std;
 
 int main()
 {
-	int dayNumber;
-	
-	cout<<"Enter a day-number between 1 and 365: ";
-	cin>>dayNumber;
-	
-	while (dayNumber<1 || dayNumber>365)
-	{
-		cout<<"That is invalid. Please try again: ";
-		cin>> dayNumber
-	}
-	
-	DayOfYear d(dayNumber);
-	
-	d.setMonthNames();
-	d.print();
-	system("pause");
-	
-	return 0;
+    int dayNumber;
+    bool valid = false;
+
+    while (!valid)
+    {
+        cout << "Enter a day-number between 1 and 365: ";
+
+        if (cin >> dayNumber && dayNumber > 0 && dayNumber < 366)
+        {
+            valid = true;
+        }
+        else
+        {
+            cin.clear();
+            cin.ignore(1024, '\n');
+            cout << "That is invalid. Please try again: ";
+        }
+    }
+    valid = false;
+
+    DayOfYear d(dayNumber);
+
+    d.setMonthNames();
+    d.print();
+    system("pause");
+
+    return 0;
 }
